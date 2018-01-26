@@ -1,0 +1,12 @@
+color=s=800x800:c=black [base];
+
+[0:v] setpts=PTS-STARTPTS, scale=320x240, split=4 [upperleft][in1][in2][in3];
+
+[in1] transpose=1 [upperright];
+[in2] vflip [lowerleft];
+[in3] transpose=2 [lowerright];
+
+[base][upperleft] overlay=shortest=1:x=240 [tmp1];
+[tmp1][upperright] overlay=shortest=1:x=560:y=240 [tmp2];
+[tmp2][lowerleft] overlay=shortest=1:x=240:y=560 [tmp3];
+[tmp3][lowerright] overlay=shortest=1:x=0:y=240
